@@ -1,0 +1,41 @@
+<InitialScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 10
+        spacing: 10
+
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Simulador de filas de Espera"
+
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Modelo M/M/1"
+                ##on_press: root.centros()
+
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Modelo M/M/S"
+                ##on_press: root.congruencial_lineal()
+
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Modelo M/M/s/K"
+                ##on_press: root.congruencial_mixto()
+
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Modelo M/G/1"
+                ##on_press: root.congruencial_multiplicativo()
+
+
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Salir"
+on_press: root.close_app()
