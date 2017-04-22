@@ -6,9 +6,9 @@ import scipy
 
 l = float(input("Ingresa lambda: "))
 m = float(input("Ingresa mu: "))
-n = float(input("Ingresa n: "))
+n = int(input("Ingresa n: "))
 s = int(input("Ingresa s: "))
 
-
+print(mm1(l,m,n))
 print(mms(l,m,s,n))
 

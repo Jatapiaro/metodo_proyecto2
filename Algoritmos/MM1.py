@@ -8,4 +8,7 @@ pn = lambda l,m,n: (1-(l/m))*pow((l/m),n) #probabilidad que el sistema tiene n u
 
 def mm1(l,m,n=10):
     aux = p(l,m)
-    return ls(l,m),ws(l,m),lq(l,m),wq(l,m),aux,(1-aux),pn(l,m,n)
+    pnl = []
+    for x in range(0,n+1):
+        pnl.append(pn(l,m,x))
+    return ls(l,m),ws(l,m),lq(l,m),wq(l,m),aux,(1-aux),pnl
