@@ -14,6 +14,9 @@ ls = lambda l,m,s,por: ((l*m*pow(l/m,s)*por)/(factorial(s-1)*pow(s*m-l,2))) + (l
 
 ws = lambda lsr,l: lsr/l #Tiempo Promedio Dentro del Sistema
 
+pn_menors = lambda l,m,n,por: (pow(l/m,n)*por)/(factorial(n))
+pn_mayors = lambda l,m,n,s,por: (pow(l/m,n)*por)/(factorial(s)*pow(s,n-s))
+
 def mms(l,m,s,n):
     por = po(l,m,s)
     lqr = lq(l,m,s,por)
