@@ -24,4 +24,10 @@ def mms(l,m,s,n=10):
     lsr = ls(l,m,s,por)
     wsr = ws(lsr,l)
     p = l/(m*s) #Utilización de los servidores
-    return lsr,lqr,wsr,wqr,p
+    pn = [por]
+    for x in range(1,n+1):
+        if x<=s:
+            pn.append(pn_menors(l,m,x,por))
+        else:
+            pn.append(pn_mayors(l,m,x,s,por))
+    return lsr,lqr,wsr,wqr,p,pn

@@ -9,6 +9,6 @@ m = float(input("Ingresa mu: "))
 n = int(input("Ingresa n: "))
 s = int(input("Ingresa s: "))
 
-print(mm1(l,m,n))
-print(mms(l,m,s,n))
+##print(mm1(l,m,n))
+print(mms(l,m,s))
 
