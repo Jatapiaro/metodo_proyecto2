@@ -3,6 +3,7 @@
     lmd: lmd_input
     mu: mu_input
     s: s_input
+    k: k_input
     n: n_input
 
     lsr: lr_out
@@ -135,6 +136,13 @@
             orientation: "horizontal"
             size_hint_y: None
             height: "30dp"
+            id: input_box
+
+            Spinner:
+                text: "M/G/1"
+                values: ["M/G/1","M/D/1","M/Ek/1"]
+                id: spinner_id
+                on_text: root.spinner_clicked(spinner_id.text)
 
             Label:
                 canvas.before:
@@ -160,6 +168,8 @@
                 id: mu_input
                 input_filter: "float"
 
+
+
             Label:
                 canvas.before:
                     Color:
@@ -179,6 +189,18 @@
                     Rectangle:
                         pos: self.pos
                         size: self.size
+                text: "k: "
+            TextInput:
+                id: k_input
+                input_filter: "int"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgb: 0, .5, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
                 text: "n: "
             TextInput:
                 id: n_input
@@ -187,7 +209,7 @@
 
             Button:
                 text: "Calcular"
-                on_press: root.mg1()
+                on_press: root.calcular()
 
         BoxLayout:
             orientation: "horizontal"

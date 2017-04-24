@@ -6,9 +6,11 @@ from ScreenObjects.Tabla import Tabla
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from Algoritmos.MMSK import mmsk
+from Algoritmos.MEk1 import mek1
 from Algoritmos.MM1 import mm1
 from Algoritmos.MMS import mms
 from Algoritmos.MG1 import mg1
+from Algoritmos.MD1 import md1
 from kivy.lang import Builder
 from kivy.app import App
 
@@ -32,12 +34,68 @@ class MG1Screen(Screen):
     mu = ObjectProperty()
     s = ObjectProperty()
     n = ObjectProperty()
+    k = ObjectProperty()
     #Outputs
     lsr = ObjectProperty()
     lqr = ObjectProperty()
     wsr = ObjectProperty()
     wqr = ObjectProperty()
     pr = ObjectProperty()
+
+    metodo = "MG1"
+    default_font_size = 15.0
+
+    def clear_all_inputs(self):
+        self.lmd.text = ''
+        self.mu.text = ''
+        self.n.text = ''
+
+    def set_md1_inputs(self):
+        self.clear_all_inputs()
+        self.s.text = "No disponible"
+        self.s.font_size = 9
+        self.s.readonly = True
+
+        self.k.text = "No disponible"
+        self.k.font_size = 9
+        self.k.readonly = True
+
+    def set_mg1_inputs(self):
+        self.clear_all_inputs()
+        self.s.text = ""
+        self.s.font_size = self.default_font_size
+        self.s.readonly = False
+
+        self.k.text = "No disponible"
+        self.k.font_size = 9
+        self.k.readonly = True
+
+    def set_mek1_inputs(self):
+        self.clear_all_inputs()
+        self.k.text = ""
+        self.k.font_size = self.default_font_size
+        self.k.readonly = False
+        self.s.text = "No disponible"
+        self.s.font_size = 9
+        self.s.readonly = True
+
+    def spinner_clicked(self, value):
+        print("Spinner value: " + value)
+        self.metodo = value
+        if self.metodo == "M/G/1":
+            self.set_mg1_inputs()
+        elif self.metodo == "M/D/1":
+            self.set_md1_inputs()
+        elif self.metodo == "M/Ek/1":
+            self.set_mek1_inputs()
+
+    def calcular(self):
+        if self.metodo == "M/G/1":
+            self.mg1()
+        elif self.metodo == "M/D/1":
+            self.md1()
+        elif self.metodo == "M/Ek/1":
+            self.mek1()
 
     def on_pre_enter(self, *args):
         self.lmd.text = ''
@@ -49,6 +107,9 @@ class MG1Screen(Screen):
         self.wsr.text = ''
         self.wqr.text = ''
         self.pr.text = ''
+        self.ids['spinner_id'].text = "M/G/1"
+        self.set_mg1_inputs()
+        self.metodo = "M/G/1"
         self.ids['drawing_box'].clear_widgets()
         self.ids['drawing_box'].add_widget(TablaVacia())
 
@@ -92,6 +153,95 @@ class MG1Screen(Screen):
             else:
                 aux = int(self.n.text)
                 p, lqr, lsr, wqr, wsr, pnr = mg1(l,m,s,aux)
+                self.lsr.text = str(lsr)
+                self.lqr.text = str(lqr)
+                self.wsr.text = str(wsr)
+                self.wqr.text = str(wqr)
+                self.pr.text = str(p)
+                self.ids['drawing_box'].clear_widgets()
+                self.ids['drawing_box'].add_widget(Tabla(pnr))
+        else:
+            the_popup = ErrorPopup()
+            the_popup.errores = errores
+            the_popup.open()
+
+    def md1(self):
+        errores = []
+        if self.lmd.text == "":
+            errores.append("Lambda no puede estar vació")
+        if self.lmd.text != "" and float(self.lmd.text) == 0:
+            errores.append("Lamba no puede ser cero")
+        if self.mu.text == "":
+            errores.append("Mu no puede estar vació")
+        if self.mu.text != "" and float(self.mu.text) == 0:
+            errores.append("Mu no puede ser cero")
+        if self.lmd.text != "" and self.mu.text != "" and float(self.mu.text) <= float(self.lmd.text):
+            errores.append("Mu debe ser mayor que Lambda")
+        if self.n.text != "" and int(self.n.text) == 0:
+            errores.append("N no puede ser cero")
+
+        if len(errores) == 0:
+            l = float(self.lmd.text)
+            m = float(self.mu.text)
+            if self.n.text == "":
+                p, lqr, lsr, wqr, wsr, pnr = md1(l,m)
+                self.lsr.text = str(lsr)
+                self.lqr.text = str(lqr)
+                self.wsr.text = str(wsr)
+                self.wqr.text = str(wqr)
+                self.pr.text = str(p)
+                self.ids['drawing_box'].clear_widgets()
+                self.ids['drawing_box'].add_widget(Tabla(pnr))
+            else:
+                aux = int(self.n.text)
+                p, lqr, lsr, wqr, wsr, pnr = md1(l,m,aux)
+                self.lsr.text = str(lsr)
+                self.lqr.text = str(lqr)
+                self.wsr.text = str(wsr)
+                self.wqr.text = str(wqr)
+                self.pr.text = str(p)
+                self.ids['drawing_box'].clear_widgets()
+                self.ids['drawing_box'].add_widget(Tabla(pnr))
+        else:
+            the_popup = ErrorPopup()
+            the_popup.errores = errores
+            the_popup.open()
+
+    def mek1(self):
+        errores = []
+        if self.lmd.text == "":
+            errores.append("Lambda no puede estar vació")
+        if self.lmd.text != "" and float(self.lmd.text) == 0:
+            errores.append("Lamba no puede ser cero")
+        if self.mu.text == "":
+            errores.append("Mu no puede estar vació")
+        if self.mu.text != "" and float(self.mu.text) == 0:
+            errores.append("Mu no puede ser cero")
+        if self.lmd.text != "" and self.mu.text != "" and float(self.mu.text) <= float(self.lmd.text):
+            errores.append("Mu debe ser mayor que Lambda")
+        if self.k.text == "":
+            errores.append("k no puede estar vacio")
+        if self.k.text != "" and int(self.k.text==0):
+            errores.append("k no puede ser cero")
+        if self.n.text != "" and int(self.n.text) == 0:
+            errores.append("N no puede ser cero")
+
+        if len(errores) == 0:
+            l = float(self.lmd.text)
+            m = float(self.mu.text)
+            k = int(self.k.text)
+            if self.n.text == "":
+                p, lqr, lsr, wqr, wsr, pnr = mek1(l,m,k)
+                self.lsr.text = str(lsr)
+                self.lqr.text = str(lqr)
+                self.wsr.text = str(wsr)
+                self.wqr.text = str(wqr)
+                self.pr.text = str(p)
+                self.ids['drawing_box'].clear_widgets()
+                self.ids['drawing_box'].add_widget(Tabla(pnr))
+            else:
+                aux = int(self.n.text)
+                p, lqr, lsr, wqr, wsr, pnr = mek1(l,m,k,aux)
                 self.lsr.text = str(lsr)
                 self.lqr.text = str(lqr)
                 self.wsr.text = str(wsr)
