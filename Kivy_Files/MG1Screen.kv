@@ -1,8 +1,193 @@
 <MG1Screen>:
+    ##external_name: internal_name
+    lmd: lmd_input
+    mu: mu_input
+    s: s_input
+    n: n_input
+
+    lsr: lr_out
+    lqr: lqr_out
+    wsr: wr_out
+    wqr: wqr_out
+    pr: pr_out
 
     BoxLayout:
         orientation: "vertical"
+        spacing: 10
+        canvas.before:
+            Color:
+                rgb: 0, 0, .4
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
+        BoxLayout:
+            orientation: "horizontal"
+
+            BoxLayout:
+                orientation: "vertical"
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text_size: self.size
+
+                        halign: 'center'
+                        valign: 'middle'
+                        canvas.before:
+                            Color:
+                                rgb: 1, .6, .2
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text:"[size=50][b]Ls: [/b][/size]"
+                        markup: True
+                    TextInput:
+                        id: lr_out
+                        text: ""
+                        readonly: True
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text_size: self.size
+
+                        halign: 'center'
+                        valign: 'middle'
+                        canvas.before:
+                            Color:
+                                rgb: 1, .6, .2
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text:"[size=50][b]Lq: [/b][/size]"
+                        markup: True
+                    TextInput:
+                        id: lqr_out
+                        text: ""
+                        readonly: True
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text_size: self.size
+
+                        halign: 'center'
+                        valign: 'middle'
+                        canvas.before:
+                            Color:
+                                rgb: 1, .6, .2
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text:"[size=50][b]Ws: [/b][/size]"
+                        markup: True
+                    TextInput:
+                        id: wr_out
+                        text: ""
+                        readonly: True
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text_size: self.size
+
+                        halign: 'center'
+                        valign: 'middle'
+                        canvas.before:
+                            Color:
+                                rgb: 1, .6, .2
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text:"[size=50][b]Wq: [/b][/size]"
+                        markup: True
+                    TextInput:
+                        id: wqr_out
+                        text: ""
+                        readonly: True
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text_size: self.size
+
+                        halign: 'center'
+                        valign: 'middle'
+                        canvas.before:
+                            Color:
+                                rgb: 1, .6, .2
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text:"[size=50][b]p: [/b][/size]"
+                        markup: True
+                    TextInput:
+                        id: pr_out
+                        text: ""
+                        readonly: True
+
+
+            BoxLayout:
+                id:drawing_box
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "30dp"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgb: 0, .5, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Lambda: "
+            TextInput:
+                id: lmd_input
+                input_filter: "float"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgb: 0, .5, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Mu: "
+            TextInput:
+                id: mu_input
+                input_filter: "float"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgb: 0, .5, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Sigma: "
+            TextInput:
+                id: s_input
+                input_filter: "float"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgb: 0, .5, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "n: "
+            TextInput:
+                id: n_input
+                input_filter: "int"
+
+
+            Button:
+                text: "Calcular"
+                on_press: root.mg1()
 
         BoxLayout:
             orientation: "horizontal"

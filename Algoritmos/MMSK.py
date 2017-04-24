@@ -41,7 +41,7 @@ def l(lmd,m,s,k,lqr,pnr):
     parte_dos = s * sumatoria_dos
     return sumatoria_uno+parte_dos
 
-def mmsk(lmd,m,s,k,n=10):
+def mmsk(lmd,m,s,k):
     p = (lmd/(m*s)) #Return
     por = po(lmd,m,s,k)
     lqr = lq(lmd,m,s,k,p,por)
@@ -55,4 +55,4 @@ def mmsk(lmd,m,s,k,n=10):
     wr = w(lr,lmd_primar)
     wqr = wq(lqr,lmd_primar)
 
-    return lr,lqr,wr,wqr,p,pnr
+    return lr,lqr,wr,wqr,p,lmd_primar,pnr

@@ -4,13 +4,13 @@
     mu: mu_input
     s: s_input
     k: k_input
-    n: n_input
 
-    lsr: lr_out
+    lr: lr_out
     lqr: lqr_out
-    wsr: wr_out
+    wr: wr_out
     wqr: wqr_out
     pr: pr_out
+    lmd_primar: lmdprima_out
 
     BoxLayout:
         orientation: "vertical"
@@ -128,6 +128,25 @@
                         text: ""
                         readonly: True
 
+                BoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text_size: self.size
+
+                        halign: 'center'
+                        valign: 'middle'
+                        canvas.before:
+                            Color:
+                                rgb: 1, .6, .2
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        text:"[size=40][b]Lambda': [/b][/size]"
+                        markup: True
+                    TextInput:
+                        id: lmdprima_out
+                        text: ""
+                        readonly: True
 
             BoxLayout:
                 id:drawing_box
@@ -180,15 +199,14 @@
                     Rectangle:
                         pos: self.pos
                         size: self.size
-                text: "n: "
+                text: "k: "
             TextInput:
-                id: n_input
+                id: k_input
                 input_filter: "int"
-
 
             Button:
                 text: "Calcular"
-                on_press: root.mms()
+                on_press: root.mmsk()
 
         BoxLayout:
             orientation: "horizontal"
