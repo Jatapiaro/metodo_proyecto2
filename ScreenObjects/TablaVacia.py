@@ -14,7 +14,7 @@ class TablaVacia(BoxLayout):
         self.my_table.cols = 2
         self.my_table.add_button_row("n",'p(n)')
         ##print(l)
-        for i in range(20):
+        for i in range(30):
             self.my_table.add_row(
                 [Button,{'text': str(i), 'color_widget': [0, 0, 0.5, 1], 'color_click': [0, 1, 0, 1], 'size_hint_x': 1}],
                 [TextInput, {'text': '','color_click': [.01, .77, .97, 1], 'readonly':True, 'size_hint_x': 1}],

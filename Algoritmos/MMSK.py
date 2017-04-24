@@ -55,4 +55,4 @@ def mmsk(lmd,m,s,k,n=10):
     wr = w(lr,lmd_primar)
     wqr = wq(lqr,lmd_primar)
 
-    return por,lqr,lr,wr,wqr
+    return lr,lqr,wr,wqr,p,pnr
