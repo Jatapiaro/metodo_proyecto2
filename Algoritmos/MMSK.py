@@ -1,16 +1,10 @@
 #coding=utf-8
 from math import factorial
 
+lmd_prima = lambda lmd,m,k,por: lmd * (1-(pow(lmd/m,k)*por))
 
-l = lambda p,k: (p/(1-p)) - (((k+1)*pow(p,k+1))/(1-pow(p,k+1))) #Promedio cleintes en sistema
-
-pk = lambda p,k: ((1-p)/(1-pow(p,k+1)))*pow(p,k) #Probabiliad de estado estable de estar en el estado k
-
-lmd_prima = lambda lmd,pkr: lmd*(1-pkr) #Tasa promedio de llegadas
-
-w = lambda lr,lmd_primar: lr/lmd_primar #Tiempo promedio dentro del sistema
-
-wq = lambda lqr,lmd_primar: lqr/lmd_primar #Tiempo Promedio en Fila
+w = lambda lr,lmd_primar: lr/lmd_primar
+wq = lambda lqr,lmd_primar: lqr/lmd_primar
 
 def po(lmd,m,s,k):
   var = pow(lmd/m,s)/factorial(s)
@@ -20,27 +14,45 @@ def po(lmd,m,s,k):
   total = sumatoria_uno+parte_dos
   return pow(total,-1)
 
-def lq(lmd,m,s,k,por,p):
-    division_arriba = por*pow(lmd/m,s)*p
-    division_abajo = factorial(s)*((1-p)*(1-p))
-    division_final = division_arriba/division_abajo
-    multiplicacion = (k-s)*pow(p,k-s)*(1-p)
-    parte_dos = 1-pow(p,k-s)-multiplicacion
-    return division_final*parte_dos
+def lq(lmd,m,s,k,p,por):
+    if lmd == s*m:
+        multiplicacion = por*pow(lmd/m,s)
+        multiplicacion_dos = k-s+pow(k-s,2)
+        multiplicacion_final = multiplicacion*multiplicacion_dos
+        resultado = multiplicacion_final/factorial(s)
+        return 0.5*resultado
+    else:
+        multiplicacion = por*pow(lmd/m,s)*p
+        multiplicacion_tres = (k-s)*pow(p,k-s)*(1-p)
+        multiplicacion_dos = 1-pow(p,k-s)-multiplicacion_tres
+        final = multiplicacion*multiplicacion_dos
+        return final / (factorial(s)*pow(1-p,2))
 
 
-def mmsk(lmd,m,s,k):
+def pn(lmd,m,s,k,por,n):
+    if n<=s:
+        return (pow(lmd,n)/(factorial(n)*pow(m,n)))*por
+    elif n>s and n<=k:
+        return (pow(lmd,n)/(factorial(s)*pow(m,n)*pow(s,n-s)))*por
 
-    p = (lmd/m) #Return
-    lr = l(p,k) #Return
+def l(lmd,m,s,k,lqr,pnr):
+    sumatoria_uno = sum(x*pnr[x] for x in range(0,s)) + lqr
+    sumatoria_dos = 1 - sum(pnr[x] for x in range(0,s))
+    parte_dos = s * sumatoria_dos
+    return sumatoria_uno+parte_dos
 
-    pkr = pk(p,k)
-
-    lmd_primar = lmd_prima(lmd,pkr) #Return - lmd_e
-
-    wr = w(lr,lmd_primar) #Return
-
+def mmsk(lmd,m,s,k,n=10):
+    p = (lmd/(m*s)) #Return
     por = po(lmd,m,s,k)
-    lqr = lq(lmd,m,s,k,por,p) #Return
-    wqr = wq(lqr,lmd_primar) #Return
-    return lr,wr,por,lqr,wqr
+    lqr = lq(lmd,m,s,k,p,por)
+
+    pnr = [por]
+    for x in range(1,k+1):
+        pnr.append(pn(lmd,m,s,k,por,x))
+
+    lr = l(lmd,m,s,k,lqr,pnr)
+    lmd_primar = lmd_prima(lmd,m,k,por)
+    wr = w(lr,lmd_primar)
+    wqr = wq(lqr,lmd_primar)
+
+    return por,lqr,lr,wr,wqr
