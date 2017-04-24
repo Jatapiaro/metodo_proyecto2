@@ -1,18 +1,16 @@
 # coding=utf-8
-from Algoritmos.MM1 import mm1
-from Algoritmos.MMS import mms
-from Algoritmos.MMSK import mmsk
-from Algoritmos.MG1 import mg1
-from ScreenObjects.TablaVacia import TablaVacia
-from ScreenObjects.Tabla import Tabla
 from kivy.uix.screenmanager import ScreenManager,Screen
+from ScreenObjects.TablaVacia import TablaVacia
 from kivy.properties import ObjectProperty
+from ScreenObjects.Tabla import Tabla
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from Algoritmos.MMSK import mmsk
+from Algoritmos.MM1 import mm1
+from Algoritmos.MMS import mms
+from Algoritmos.MG1 import mg1
 from kivy.lang import Builder
 from kivy.app import App
-
-
 
 Builder.load_file('Kivy_Files/InitialScreen.kv')
 Builder.load_file('Kivy_Files/ErrorPopup.kv')
@@ -87,7 +85,6 @@ class MM1Screen(Screen):
             the_popup = ErrorPopup()
             the_popup.errores = errores
             the_popup.open()
-
 
     def return_to_menu(self):
         screen_manager.transition.duration = 1.5
