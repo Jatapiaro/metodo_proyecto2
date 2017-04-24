@@ -1,5 +1,5 @@
 #coding=utf-8
-from math import factorial
+from scipy.misc import factorial
 
 po_expresion = lambda l,m,s: pow(l/ m,s)/(factorial(s) * (1-(l/(s*m))))
 po_sum = lambda l,m,s: sum((pow(l/m,n)/factorial(n)) for n in range(0,s))

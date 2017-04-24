@@ -1,5 +1,5 @@
 #coding=utf-8
-from math import factorial
+from scipy.misc import factorial
 
 lmd_prima = lambda lmd,m,k,por: lmd * (1-(pow(lmd/m,k)*por))
 
