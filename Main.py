@@ -42,7 +42,7 @@ class MG1Screen(Screen):
     wqr = ObjectProperty()
     pr = ObjectProperty()
 
-    metodo = "MG1"
+    metodo = "M/G/1"
     default_font_size = 15.0
 
     def clear_all_inputs(self):
@@ -80,7 +80,7 @@ class MG1Screen(Screen):
         self.s.readonly = True
 
     def spinner_clicked(self, value):
-        print("Spinner value: " + value)
+        #print("Spinner value: " + value)
         self.metodo = value
         if self.metodo == "M/G/1":
             self.set_mg1_inputs()
