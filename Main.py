@@ -153,6 +153,8 @@ class MMSKcreen(Screen):
             errores.append("K no puede estar vació")
         if self.k.text != "" and int(self.k.text) == 0:
             errores.append("K no puede ser cero")
+        if self.k.text != "" and self.s.text != "" and int(self.s.text)>int(self.k.text):
+            errores.append("S tiene que ser menor o igual que K")
 
 
 
