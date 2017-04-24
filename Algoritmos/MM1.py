@@ -11,4 +11,4 @@ def mm1(l,m,n=10):
     pnl = []
     for x in range(0,n+1):
         pnl.append(pn(l,m,x))
-    return ls(l,m),ws(l,m),lq(l,m),wq(l,m),aux,(1-aux),pnl
+    return ls(l,m),ws(l,m),lq(l,m),wq(l,m),aux,pnl

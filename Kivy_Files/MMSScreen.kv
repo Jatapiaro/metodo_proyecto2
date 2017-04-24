@@ -2,6 +2,26 @@
 
     BoxLayout:
         orientation: "vertical"
+        spacing: 7
+        canvas.before:
+            Color:
+                rgb: 0, 0, .4
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint_y: None
+            height: "30dp"
+            Label:
+                canvas.before:
+                    Color:
+                        rgb: 0, .5, .2
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Semilla: "
 
         BoxLayout:
             orientation: "horizontal"
