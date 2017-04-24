@@ -61,10 +61,20 @@ class MG1Screen(Screen):
         errores = []
         if self.lmd.text == "":
             errores.append("Lambda no puede estar vació")
+        if self.lmd.text != "" and float(self.lmd.text) == 0:
+            errores.append("Lamba no puede ser cero")
         if self.mu.text == "":
             errores.append("Mu no puede estar vació")
+        if self.mu.text != "" and float(self.mu.text) == 0:
+            errores.append("Mu no puede ser cero")
+        if self.lmd.text != "" and self.mu.text != "" and float(self.mu.text) <= float(self.lmd.text):
+            errores.append("Mu debe ser mayor que Lambda")
         if self.s.text == "":
             errores.append("Sigma no puede estar vació")
+        if self.s.text != "" and float(self.s.text) == 0:
+            errores.append("Sigma no puede ser cero")
+        if self.n.text != "" and int(self.n.text) == 0:
+            errores.append("N no puede ser cero")
 
         if len(errores) == 0:
             l = float(self.lmd.text)
@@ -127,12 +137,24 @@ class MMSKcreen(Screen):
         errores = []
         if self.lmd.text == "":
             errores.append("Lambda no puede estar vació")
-        if self.mu.text == "":
+        if self.lmd.text != "" and float(self.lmd.text) == 0:
+            errores.append("Lamba no puede ser cero")
+        if  self.mu.text == "":
             errores.append("Mu no puede estar vació")
+        if self.mu.text != "" and float(self.mu.text) == 0:
+            errores.append("Mu no puede ser cero")
+        if self.mu.text != "" and self.lmd.text != "" and float(self.mu.text) <= float(self.lmd.text):
+            errores.append("Mu debe ser mayor que Lambda")
         if self.s.text == "":
             errores.append("S no puede estar vació")
+        if self.s.text != "" and int(self.s.text) == 0:
+            errores.append("S no puede ser cero")
         if self.k.text == "":
             errores.append("K no puede estar vació")
+        if self.k.text != "" and int(self.k.text) == 0:
+            errores.append("K no puede ser cero")
+
+
 
         if len(errores) == 0:
             #lr,lqr,wr,wqr,p,lmd_primar,pnr
@@ -194,10 +216,20 @@ class MMSScreen(Screen):
         errores = []
         if self.lmd.text == "":
             errores.append("Lambda no puede estar vació")
+        if self.lmd.text != "" and float(self.lmd.text) == 0:
+            errores.append("Lamba no puede ser cero")
         if self.mu.text == "":
             errores.append("Mu no puede estar vació")
+        if self.mu.text != "" and float(self.mu.text) == 0:
+            errores.append("Mu no puede ser cero")
+        if self.lmd.text != "" and self.mu.text != "" and float(self.mu.text) <= float(self.lmd.text):
+            errores.append("Mu debe ser mayor que Lambda")
         if self.s.text == "":
             errores.append("S no puede estar vació")
+        if self.s.text != "" and int(self.s.text) == 0:
+            errores.append("S no puede ser cero")
+        if self.n.text != "" and int(self.n.text) == 0:
+            errores.append("N no puede ser cero")
 
         if len(errores)==0:
             l = float(self.lmd.text)
@@ -271,8 +303,16 @@ class MM1Screen(Screen):
         #print(self.lmd.text+" - "+self.mu.text+" - "+self.n.text)
         if self.lmd.text == "":
             errores.append("Lambda no puede estar vació")
+        if self.lmd.text != "" and float(self.lmd.text) == 0:
+            errores.append("Lamba no puede ser cero")
         if self.mu.text == "":
             errores.append("Mu no puede estar vació")
+        if self.mu.text != "" and float(self.mu.text) == 0:
+            errores.append("Mu no puede ser cero")
+        if self.lmd.text != "" and self.lmd.text != "" and float(self.mu.text) <= float(self.lmd.text):
+            errores.append("Mu debe ser mayor que Lambda")
+        if self.n.text!="" and int(self.n.text) == 0:
+            errores.append("N no puede ser cero")
 
         if len(errores)==0:
             l = float(self.lmd.text)
