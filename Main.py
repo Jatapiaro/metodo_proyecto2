@@ -13,6 +13,7 @@ from kivy.app import App
 
 Builder.load_file('Kivy_Files/InitialScreen.kv')
 Builder.load_file('Kivy_Files/ErrorPopup.kv')
+Builder.load_file('Kivy_Files/MM1Screen.kv')
 
 class ErrorPopup(Popup):
     errores = []
@@ -20,12 +21,18 @@ class ErrorPopup(Popup):
         for e in self.errores:
             self.ids['errord'].add_widget(Label(text=e))
 
+class MM1Screen(Screen):
+    def return_to_menu(self):
+        screen_manager.transition.duration = 1.5
+        screen_manager.transition.direction = "right"
+        screen_manager.current = 'initial_screen'
+
 class InitialScreen(Screen):
 
-    #def centros(self):
-    #    screen_manager.transition.duration = 1.5
-    #    screen_manager.transition.direction = "left"
-        #screen_manager.current = 'centros_screen'
+    def mm1(self):
+        screen_manager.transition.duration = 1.5
+        screen_manager.transition.direction = "left"
+        screen_manager.current = 'mm1_screen'
 
     def close_app(self):
         App.get_running_app().stop()
@@ -33,6 +40,7 @@ class InitialScreen(Screen):
 
 screen_manager = ScreenManager()
 screen_manager.add_widget(InitialScreen(name="initial_screen"))
+screen_manager.add_widget(MM1Screen(name="mm1_screen"))
 
 class App(App):
     def build(self):
