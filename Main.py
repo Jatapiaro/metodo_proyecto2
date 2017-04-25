@@ -293,8 +293,8 @@ class MMSKcreen(Screen):
             errores.append("Mu no puede estar vació")
         if self.mu.text != "" and float(self.mu.text) == 0:
             errores.append("Mu no puede ser cero")
-        if self.mu.text != "" and self.lmd.text != "" and float(self.mu.text) <= float(self.lmd.text):
-            errores.append("Mu debe ser mayor que Lambda")
+        if self.mu.text != "" and self.lmd.text != "" and float(self.mu.text) < float(self.lmd.text):
+            errores.append("Mu debe ser mayor o igual que Lambda")
         if self.s.text == "":
             errores.append("S no puede estar vació")
         if self.s.text != "" and int(self.s.text) == 0:
@@ -374,8 +374,8 @@ class MMSScreen(Screen):
             errores.append("Mu no puede estar vació")
         if self.mu.text != "" and float(self.mu.text) == 0:
             errores.append("Mu no puede ser cero")
-        if self.lmd.text != "" and self.mu.text != "" and float(self.mu.text) <= float(self.lmd.text):
-            errores.append("Mu debe ser mayor que Lambda")
+        if self.lmd.text != "" and self.mu.text != "" and float(self.mu.text) < float(self.lmd.text):
+            errores.append("Mu debe ser mayor o igual que Lambda")
         if self.s.text == "":
             errores.append("S no puede estar vació")
         if self.s.text != "" and int(self.s.text) == 0:
