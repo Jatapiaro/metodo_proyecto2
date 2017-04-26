@@ -3,7 +3,7 @@ pn = lambda n,p,por:pow(p,n)*por
 lq = lambda p: (p*p)/(2*(1-p))
 ls = lambda p,lqr: p+lqr
 wq = lambda l,lqr: lqr/l
-ws = lambda wqr,m: wqr/(1/m)
+ws = lambda wqr,m: wqr+(1/m)
 
 def md1(l,m,n=10):
     p = (l / m)
