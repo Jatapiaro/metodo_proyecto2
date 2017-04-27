@@ -1,6 +1,6 @@
 #coding=utf-8
 
-lq = lambda l,s,p: (((l*l)*(s*s))+(p*p))/(2*(1-p))
+lq = lambda l,s,p: (((l*l)*(s))+(p*p))/(2*(1-p))
 
 ls = lambda lqr,p: lqr+p
 
