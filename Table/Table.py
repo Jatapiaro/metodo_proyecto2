@@ -577,7 +577,7 @@ class NullLabel(Button):
     @property
     def color(self):
         """ Background color """
-        return self._color
+        return self.background_color
 
     @color.setter
     def color(self, color):
